@@ -18,16 +18,16 @@ const Footer = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ease: 'easeInOut', duration: 0.6 }}
-      className="w-full bg-gray-900 text-gray-100 py-10 border-t border-gray-800"
+      className="w-full bg-surface text-foreground py-10 border-t border-divider"
     >
-      <div className="max-w-5xl mx-auto text-center space-y-6">
+      <div className="site-container text-center space-y-6">
         
         {/* Follow Me & Contact Me (Centered Layout) */}
         <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center space-y-6 sm:space-y-0 sm:gap-16">
           
           {/* Follow Me Section */}
           <div className="flex flex-col items-center">
-            <h3 className="text-lg sm:text-2xl text-amber-300 font-semibold">Follow Me</h3>
+            <h3 className="card-title text-accent">Follow Me</h3>
             <ul className="flex justify-center gap-6 mt-3">
               {socialLinks.map((link) => (
                 <motion.a
@@ -36,7 +36,7 @@ const Footer = () => {
                   key={link.id}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-gray-100 hover:text-amber-300 cursor-pointer rounded-full bg-gray-800 shadow-md p-4 transition-all"
+                  className="text-foreground hover:text-accent cursor-pointer rounded-full bg-surface shadow-md p-4 transition-all"
                 >
                   <i className="text-2xl sm:text-3xl">{link.icon}</i>
                 </motion.a>
@@ -46,7 +46,7 @@ const Footer = () => {
 
           {/* Contact Me Section */}
           <div className="flex flex-col items-center">
-            <h3 className="text-lg sm:text-2xl text-amber-300 font-semibold">Contact Me</h3>
+            <h3 className="card-title text-accent">Contact Me</h3>
             <ul className="flex flex-col sm:flex-row items-center sm:gap-6 mt-3">
               {contactInfo.map((contact) => (
                 <motion.a
@@ -54,7 +54,7 @@ const Footer = () => {
                   key={contact.id}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 text-gray-100 hover:text-amber-300 text-lg sm:text-xl transition"
+                  className="flex items-center gap-2 text-foreground hover:text-accent text-base transition"
                 >
                   {contact.icon} {contact.text}
                 </motion.a>
@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-6 text-sm sm:text-md text-gray-400">
+        <div className="mt-6 text-sm text-muted">
           <p>Website Version 2.0</p>
           <p className="text-xs">Powered by React.js & TailwindCSS</p>
         </div>

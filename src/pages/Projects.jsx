@@ -20,13 +20,13 @@ const projectsData = [
 
 const Projects = () => {
   return (
-    <div className="w-full mx-auto text-gray-100 p-6">
+    <div className="site-container page-spacing">
       {/* Animated Header */}
       <motion.h1 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: 'easeInOut', duration: 0.6, delay: 0.1 }}
-        className="text-5xl font-extrabold text-yellow-300 text-center tracking-wide"
+        className="page-title text-center"
       >
         Projects
       </motion.h1>
@@ -36,7 +36,7 @@ const Projects = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: 'easeInOut', duration: 1, delay: 0.4 }}
-        className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-10 gap-10 px-3"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8"
       > 
         {projectsData.map((project, index) => (
           <ProjectsCard 

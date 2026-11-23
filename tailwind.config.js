@@ -12,7 +12,14 @@ module.exports = withMT({
     extend: {
       colors: {
         'background-primary': '#0C0C0C',
-        'background-secondary': '#31363F'
+        'background-secondary': '#31363F',
+        canvas: '#0C0C0C',
+        surface: '#18181B',
+        divider: '#3F3F46',
+        foreground: '#FAFAFA',
+        muted: '#C4C4CC',
+        accent: '#FDE047',
+        'accent-soft': '#FEF08A'
       },
       container: {
 				padding: {
@@ -24,7 +31,7 @@ module.exports = withMT({
 				},
       },
       fontFamily: {
-        body: ['Kanit']
+        body: ['Kanit', 'system-ui', 'sans-serif']
       }
     },
   },

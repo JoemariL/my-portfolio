@@ -8,7 +8,7 @@ import ContactTab from "./aboutComponents/contact";
 
 const About = () => {
   return (
-    <div className="mx-auto place-content-center text-gray-100">
+    <div className="site-container page-spacing space-y-12 sm:space-y-16">
       <ProfileTab />
       <SkillsTab />
       <ExperienceTab />

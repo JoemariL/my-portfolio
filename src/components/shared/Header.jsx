@@ -1,82 +1,95 @@
-import { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from 'react';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const links = [
+  { to: '/projects', label: 'Projects' },
+  { to: '/about', label: 'About Me' },
+];
+
+const linkClass = ({ isActive }) =>
+  `transition-colors duration-200 hover:text-accent ${
+    isActive ? 'text-accent' : 'text-foreground'
+  }`;
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const { pathname } = useLocation();
 
-  function toggleMenu() {
-    setShowMenu((prevShowMenu) => !prevShowMenu);
-  }
+  // Close the mobile menu on any navigation
+  useEffect(() => {
+    setShowMenu(false);
+  }, [pathname]);
+
+  // Close with Escape
+  useEffect(() => {
+    if (!showMenu) return;
+    const onKey = (e) => e.key === 'Escape' && setShowMenu(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showMenu]);
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
+    <motion.header
+      initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full bg-gray-900 text-gray-100 shadow-md px-4 sm:px-20 py-5 z-50"
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-md
+                 text-foreground shadow-md border-b border-divider"
     >
-      <div className="flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="text-3xl sm:text-4xl font-semibold text-amber-300 hover:text-amber-400 transition">
+      <nav className="site-container flex items-center justify-between py-4">
+        <Link
+          to="/"
+          className="text-xl sm:text-2xl font-semibold text-accent
+                     hover:text-accent-soft transition-colors"
+        >
           J-Website
         </Link>
 
-        {/* Mobile Menu Button */}
+        {/* Desktop links */}
+        <div className="hidden sm:flex gap-4 text-base">
+          {links.map(({ to, label }) => (
+            <NavLink key={to} to={to} className={(state) => `${linkClass(state)} px-3 py-1`}>
+              {label}
+            </NavLink>
+          ))}
+        </div>
+
+        {/* Mobile toggle */}
         <button
-          onClick={toggleMenu}
-          className="sm:hidden focus:outline-none"
-          aria-label="Toggle Menu"
+          onClick={() => setShowMenu((s) => !s)}
+          className="sm:hidden p-1 rounded-md focus:outline-none
+                     focus-visible:ring-2 focus-visible:ring-accent"
+          aria-label="Toggle menu"
+          aria-expanded={showMenu}
         >
           {showMenu ? <FiX className="text-3xl" /> : <FiMenu className="text-3xl" />}
         </button>
+      </nav>
 
-        {/* Desktop Navigation */}
-        <div className="hidden sm:flex space-x-6 text-lg">
-          <Link
-            to="/projects"
-            className="hover:text-amber-300 transition px-3 py-1 rounded-lg"
-          >
-            Projects
-          </Link>
-          <Link
-            to="/about"
-            className="hover:text-amber-300 transition px-3 py-1 rounded-lg"
-          >
-            About Me
-          </Link>
-        </div>
-      </div>
-
-      {/* Mobile Menu - Animated */}
+      {/* Mobile menu: overlays the page instead of pushing it, so nothing jumps */}
       <AnimatePresence>
         {showMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="sm:hidden flex flex-col items-start mt-5 space-y-4 p-4 border-t border-gray-800 bg-gray-900 shadow-lg"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="sm:hidden absolute top-full left-0 w-full bg-surface
+                       border-t border-divider shadow-lg"
           >
-            <Link
-              to="/projects"
-              className="text-lg hover:text-amber-300 transition"
-              onClick={toggleMenu}
-            >
-              Projects
-            </Link>
-            <Link
-              to="/about"
-              className="text-lg hover:text-amber-300 transition"
-              onClick={toggleMenu}
-            >
-              About Me
-            </Link>
+            <div className="site-container flex flex-col gap-4 py-5">
+              {links.map(({ to, label }) => (
+                <NavLink key={to} to={to} className={(state) => `${linkClass(state)} text-base`}>
+                  {label}
+                </NavLink>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </motion.header>
   );
 };
 
