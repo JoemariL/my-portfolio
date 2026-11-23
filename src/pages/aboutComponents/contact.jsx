@@ -31,9 +31,9 @@ const Contact = () => {
             duration: 1.0,
             delay: 0.4,
             }}
-            className="mx-2 my-5 sm:my-20 sm:mx-5 sm:pl-6"
+            className="w-full"
         >
-            <div className="my-5">
+            <div className="w-full">
                 <motion.h1
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -42,17 +42,17 @@ const Contact = () => {
                     duration: 0.6,
                     delay: 0.1,
                     }}
-                    className="text-center text-4xl mb-5 sm:mb-10 text-amber-200"
+                    className="section-title mb-6"
                 >
                     My Contacts
                 </motion.h1>
-                <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-general-regular">
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {descriptionData.map((info) => (
-                    <li className="flex flex-col items-center text-center p-4 bg-gray-800 rounded-lg shadow-lg" key={info.id}>
-                        <i className="text-3xl mb-2 text-amber-200">
+                    <li className="site-panel flex flex-col items-center text-center" key={info.id}>
+                        <i className="text-3xl mb-2 text-accent">
                             {info.icon}
                         </i>
-                        <span className="text-lg text-gray-300">
+                        <span className="body-copy break-all">
                             {info.name}
                         </span>
                     </li>

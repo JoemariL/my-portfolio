@@ -5,7 +5,7 @@ import CertificationsTab from './achievementsComponents/certifications';
 
 const Achievements = () => {
   return (
-    <div className="mx-auto place-content-center text-gray-50">
+    <div className="site-container page-spacing space-y-12 sm:space-y-16">
         <AchievementsTab />
         <CertificationsTab />
     </div>

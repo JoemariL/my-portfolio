@@ -67,9 +67,9 @@ const Experience = () => {
                     duration: 1.0,
                     delay: 0.4,
                 }}
-                className="p-2 sm:w-full sm:px-6"
+                className="w-full"
             >
-                <div className="sm:flex sm:gap-5 mt-10 sm:mt-20 sm:ml-10 flex-col">
+                <div className="mb-6">
                     <motion.h1
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -78,15 +78,15 @@ const Experience = () => {
                             duration: 0.6,
                             delay: 0.1,
                         }}
-                        className="text-4xl mb-10 md:mb-10 text-center sm:text-left text-amber-200"
+                        className="section-title"
                     >
                         My Experience
                     </motion.h1>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {experienceData.map((experience) => (
-                        <div key={experience.id} className="rounded-lg shadow-lg p-6">
+                        <div key={experience.id}>
                             <ExperienceCard
                                 logo={experience.logo}
                                 companyName={experience.companyName}
