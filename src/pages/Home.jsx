@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { contactHref } from '../contact';
 import { FiAward, FiCloud, FiCode, FiMail, FiShield } from 'react-icons/fi';
-import heroImage from '../assets/infrastructure-hero.jpg';
+import heroImage from '../assets/developer-hero.jpg';
 
 const expertise = [
   { Icon: FiShield, title: 'Network security', description: 'Web application firewalls, network systems, and security monitoring.' },
