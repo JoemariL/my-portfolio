@@ -1,81 +1,98 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { FiCloud, FiCode, FiMail, FiShield } from 'react-icons/fi';
+import heroImage from '../assets/infrastructure-hero.jpg';
+import ProjectPreview from './projects/ProjectPreview';
+import { projects } from './projects/projectsData';
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { ease: 'easeInOut', duration: 0.8, delay },
-});
+const expertise = [
+  { Icon: FiShield, title: 'Network security', description: 'Web application firewalls, network systems, and security monitoring.' },
+  { Icon: FiCloud, title: 'Cloud infrastructure', description: 'Cloud deployments, Terraform automation, and infrastructure troubleshooting.' },
+  { Icon: FiCode, title: 'Web development', description: 'Full-stack applications built around real operational workflows.' },
+];
 
-function Home() {
+export default function Home() {
   return (
-    <section className="flex-grow flex items-center justify-center">
-        <div className="site-container py-16 flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-20">
-        {/* Text */}
-        <div className="text-center md:text-left max-w-xl">
-          <motion.p {...fadeUp(0.2)} className="section-title text-foreground">
-            Hi
-          </motion.p>
-
-          <motion.h1
-            {...fadeUp(0.35)}
-            className="mt-1 page-title text-foreground"
-          >
-            I'm <span className="text-accent">Joemari Lopez</span>
-            <br />
-            a Developer
-          </motion.h1>
-
-          <motion.p {...fadeUp(0.5)} className="mt-3 text-lg text-accent-soft">
-            Network &amp; Security
-          </motion.p>
-
-          <motion.p {...fadeUp(0.65)} className="mt-6 body-copy">
-            An enthusiastic and self-motivated programmer, dedicated to continuous
-            growth, seeking new experiences to improve skills.
-          </motion.p>
-
-          <motion.div
-            {...fadeUp(0.8)}
-            className="mt-8 flex flex-wrap justify-center md:justify-start gap-4"
-          >
-            <a
-              href="mailto:your@email.com"
-              className="px-6 py-2.5 rounded-lg bg-accent text-canvas font-semibold
-                         hover:bg-yellow-400 transition-colors duration-300"
-            >
-              Hire Me
-            </a>
-            <Link
-              to="/about"
-              className="px-6 py-2.5 rounded-lg border border-accent text-accent font-semibold
-                         hover:bg-accent hover:text-canvas transition-colors duration-300"
-            >
-              Experience
-            </Link>
-          </motion.div>
+    <>
+      <section className="home-hero">
+        <div className="site-container hero-layout">
+          <div>
+            <p className="eyebrow">Developer · Network &amp; Security</p>
+            <h1 className="hero-title">
+              Hi, I’m <span>Joemari Lopez.</span>
+            </h1>
+            <p className="hero-lead">I build web applications and work on the infrastructure that keeps them running securely.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/experience" className="button button-primary">My experience</Link>
+              <Link to="/projects" className="button button-secondary">View projects</Link>
+            </div>
+          </div>
+          <div className="hero-visual" aria-hidden="true">
+            <img src={heroImage} alt="" fetchPriority="high" />
+          </div>
         </div>
+      </section>
 
-        {/* Photo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ ease: 'easeOut', duration: 0.9, delay: 0.4 }}
-          className="relative shrink-0"
-        >
-          <div className="absolute inset-0 rounded-[50%] bg-accent/20 blur-3xl" />
-          <img
-            src="/profile.jpg"
-            alt="My Picture"
-            loading="eager"
-            className="relative w-64 h-80 sm:w-72 sm:h-96 lg:w-80 lg:h-[26rem]
-                       rounded-[50%] object-cover border-2 border-accent/60
-                       shadow-[0_0_40px_rgba(253,224,71,0.25)]"
-          />
-        </motion.div>
-      </div>
-    </section>
+      <section className="site-container home-section" aria-labelledby="selected-work">
+        <div className="section-intro">
+          <div>
+            <p className="eyebrow">Portfolio</p>
+            <h2 id="selected-work" className="section-title">Selected projects</h2>
+          </div>
+          <Link className="button button-secondary" to="/projects">Explore projects</Link>
+        </div>
+        <div className="work-grid">
+          {projects.map((project) => (
+            <article className="work-tile" key={project.id}>
+              <ProjectPreview theme={project.id} />
+              <div className="work-caption">
+                <p className="text-sm text-accent">{project.category}</p>
+                <h3 className="card-title">{project.title}</h3>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="expertise-section" aria-labelledby="expertise">
+        <div className="site-container home-section">
+          <div className="section-intro">
+            <div>
+              <p className="eyebrow">Expertise</p>
+              <h2 id="expertise" className="section-title">What I do</h2>
+            </div>
+            <Link className="button button-secondary" to="/about">About me</Link>
+          </div>
+          <div className="expertise-grid">
+            {expertise.map(({ Icon, title, description }) => (
+              <article key={title} className="site-panel">
+                <span className="expertise-icon"><Icon aria-hidden="true" /></span>
+                <h3 className="card-title mt-5">{title}</h3>
+                <p className="body-copy mt-2">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="site-container home-section" aria-labelledby="contact">
+        <div className="contact-panel">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h2 id="contact" className="section-title">Let’s work together</h2>
+          </div>
+          <a href="mailto:lopezjoemari1@gmail.com" className="button button-primary">
+            <FiMail aria-hidden="true" /> Send an email
+          </a>
+        </div>
+      </section>
+
+      <footer className="site-container home-footer">
+        <span>Joemari Lopez</span>
+        <div className="flex flex-wrap gap-5">
+          <a href="https://github.com/JoemariL/">GitHub</a>
+          <a href="https://www.linkedin.com/in/joemari-lopez-95409423a/">LinkedIn</a>
+        </div>
+      </footer>
+    </>
   );
 }
-
-export default Home;

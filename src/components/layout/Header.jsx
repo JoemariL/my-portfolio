@@ -4,7 +4,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const links = [
-  { to: '/projects', label: 'Projects' },
+  { to: '/', label: 'Home' },
+  { to: '/experience', label: 'Experience' },
   { to: '/about', label: 'About Me' },
 ];
 
@@ -35,26 +36,36 @@ const Header = () => {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-md
-                 text-foreground shadow-md border-b border-divider"
+      className="sticky top-0 z-50 w-full shrink-0 bg-canvas/95 backdrop-blur-md
+                 text-foreground border-b border-divider"
     >
-      <nav className="site-container flex items-center justify-between py-4">
+      <nav className="site-container flex items-center justify-between gap-4 py-4">
         <Link
           to="/"
-          className="text-xl sm:text-2xl font-semibold text-accent
-                     hover:text-accent-soft transition-colors"
+          className="inline-flex shrink-0 items-center gap-2.5 rounded-md text-lg font-semibold text-foreground transition-colors hover:text-accent sm:text-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
-          J-Website
+          <img
+            src={process.env.PUBLIC_URL + '/page-icon.png'}
+            width={32}
+            height={32}
+            alt=""
+            className="rounded-lg"
+          />
+          <span>JL Website</span>
         </Link>
 
         {/* Desktop links */}
         <div className="hidden sm:flex gap-4 text-base">
           {links.map(({ to, label }) => (
-            <NavLink key={to} to={to} className={(state) => `${linkClass(state)} px-3 py-1`}>
+            <NavLink key={to} to={to} end={to === '/'} className={(state) => `${linkClass(state)} px-3 py-1`}>
               {label}
             </NavLink>
           ))}
         </div>
+
+        <a href="mailto:lopezjoemari1@gmail.com" className="button button-secondary hidden md:inline-flex">
+          Let’s talk
+        </a>
 
         {/* Mobile toggle */}
         <button
@@ -81,10 +92,13 @@ const Header = () => {
           >
             <div className="site-container flex flex-col gap-4 py-5">
               {links.map(({ to, label }) => (
-                <NavLink key={to} to={to} className={(state) => `${linkClass(state)} text-base`}>
+                <NavLink key={to} to={to} end={to === '/'} className={(state) => `${linkClass(state)} text-base`}>
                   {label}
                 </NavLink>
               ))}
+              <a href="mailto:lopezjoemari1@gmail.com" className="button button-secondary self-start">
+                Let’s talk
+              </a>
             </div>
           </motion.div>
         )}

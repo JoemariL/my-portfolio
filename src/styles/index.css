@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply bg-canvas;
+
+}
+
+body {
+  margin: 0;
+  @apply font-body text-base text-foreground;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .page-spacing {
+    @apply py-10 sm:py-16;
+  }
+
+  .page-title {
+    @apply text-4xl font-bold leading-tight tracking-tight text-accent sm:text-5xl;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold leading-tight text-accent sm:text-3xl;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold leading-snug sm:text-2xl;
+  }
+
+  .body-copy {
+    @apply text-base leading-relaxed text-muted;
+  }
+
+  .site-panel {
+    @apply rounded-xl border border-divider bg-surface p-5 sm:p-6;
+  }
+}
+
+@layer components {
+  .eyebrow { @apply text-sm font-medium leading-snug text-accent; }
+  .button {
+    @apply inline-flex min-h-[2.75rem] items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent;
+  }
+  .button-primary { @apply border-accent bg-accent text-canvas hover:border-accent-soft hover:bg-accent-soft; }
+  .button-secondary { @apply border-divider bg-surface text-foreground hover:border-accent hover:text-accent; }
+  .home-hero {
+    @apply border-b border-divider;
+    background: radial-gradient(ellipse at 76% 42%, #3c2d15 0%, transparent 57%), #14120f;
+  }
+  .hero-layout { @apply grid items-center gap-10 py-16 md:grid-cols-2 md:py-24 lg:gap-16; }
+  .hero-title {
+    @apply mt-4 max-w-xl font-semibold tracking-tight text-foreground;
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    line-height: .98;
+  }
+  .hero-title span { @apply block text-accent; }
+  .hero-lead { @apply mt-6 max-w-md text-lg leading-relaxed text-muted sm:text-xl; }
+  .hero-visual {
+    @apply relative aspect-[5/4] overflow-hidden rounded-2xl border border-accent/30 sm:aspect-[4/3];
+    box-shadow: 0 24px 70px #0007;
+  }
+  .hero-visual img { @apply h-full w-full object-cover; }
+  .hero-visual::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(135deg, #17120b33, transparent 52%, #17120b50);
+    pointer-events: none;
+  }
+  .home-section { @apply py-12 sm:py-16; }
+  .section-intro { @apply mb-7 flex flex-wrap items-end justify-between gap-4; }
+  .section-intro .section-title { @apply mt-1 text-foreground; }
+  .work-grid { @apply grid gap-5 md:grid-cols-2; }
+  .work-tile { @apply overflow-hidden rounded-2xl border border-divider bg-surface; }
+  .work-caption { @apply space-y-1 px-5 py-5 sm:px-6; }
+  .expertise-section { @apply border-y border-divider bg-[#15130f]; }
+  .expertise-grid { @apply grid gap-5 md:grid-cols-3; }
+  .expertise-icon { @apply inline-flex h-11 w-11 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-xl text-accent; }
+  .contact-panel {
+    @apply flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-accent/30 p-6 sm:p-9;
+    background: linear-gradient(120deg, #332716, #191610 68%);
+  }
+  .contact-panel h2 { @apply mt-1 text-foreground; }
+  .home-footer { @apply flex flex-wrap items-center justify-between gap-4 border-t border-divider pb-8 pt-6 text-sm text-muted; }
+  .home-footer a { @apply hover:text-accent; }
+  .showcase-card {
+    @apply border-b border-divider bg-surface py-8 text-foreground sm:py-12;
+    background-image: radial-gradient(ellipse at 85% 22%, #3b2e1966, transparent 68%);
+  }
+  .project-preview { @apply overflow-hidden px-5 pt-5 sm:px-8 sm:pt-7; }
+  .showcase-card .project-preview { @apply rounded-xl; }
+  .project-preview-triage { background: radial-gradient(ellipse at 70% 10%, #776039, #3b2b19 75%); }
+  .project-preview-tickets { background: radial-gradient(ellipse at 30% 0%, #696048, #323024 76%); }
+  .preview-window {
+    @apply mx-auto max-w-lg overflow-hidden rounded-t-xl border border-[#e7ceb248] bg-[#201b13] text-[#f6e7d2];
+    box-shadow: 0 10px 32px #0006;
+  }
+  .preview-top { @apply flex h-9 items-center justify-between border-b border-[#e7ceb22b] px-3; }
+  .preview-top span { @apply flex gap-1.5; }
+  .preview-top i { @apply h-1.5 w-1.5 rounded-full bg-accent/60; }
+  .preview-top small { @apply text-xs text-[#cdbb9f]; }
+  .preview-body { @apply grid grid-cols-[2.75rem_minmax(0,1fr)] sm:grid-cols-[5.5rem_minmax(0,1fr)]; }
+  .preview-sidebar { @apply flex flex-col gap-3 border-r border-[#e7ceb22b] p-3 text-accent; }
+  .preview-sidebar span { @apply h-1 w-full rounded bg-accent/20; }
+  .preview-content { @apply grid gap-2 p-3 sm:p-4; }
+  .preview-content strong { @apply text-sm font-medium sm:text-base; }
+  .preview-row { @apply flex items-center gap-2 rounded-md border border-[#e7ceb229] bg-[#30261a] px-2 py-1.5 text-xs sm:text-sm; }
+  .preview-row svg { @apply shrink-0 text-accent; }
+}
+
