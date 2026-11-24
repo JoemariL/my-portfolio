@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { FiCloud, FiCode, FiMail, FiShield } from 'react-icons/fi';
+import { contactHref } from '../contact';
+import { FiAward, FiCloud, FiCode, FiMail, FiShield } from 'react-icons/fi';
 import heroImage from '../assets/infrastructure-hero.jpg';
-import ProjectPreview from './projects/ProjectPreview';
-import { projects } from './projects/projectsData';
 
 const expertise = [
   { Icon: FiShield, title: 'Network security', description: 'Web application firewalls, network systems, and security monitoring.' },
@@ -23,33 +22,11 @@ export default function Home() {
             <p className="hero-lead">I build web applications and work on the infrastructure that keeps them running securely.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/experience" className="button button-primary">My experience</Link>
-              <Link to="/projects" className="button button-secondary">View projects</Link>
             </div>
           </div>
           <div className="hero-visual" aria-hidden="true">
             <img src={heroImage} alt="" fetchPriority="high" />
           </div>
-        </div>
-      </section>
-
-      <section className="site-container home-section" aria-labelledby="selected-work">
-        <div className="section-intro">
-          <div>
-            <p className="eyebrow">Portfolio</p>
-            <h2 id="selected-work" className="section-title">Selected projects</h2>
-          </div>
-          <Link className="button button-secondary" to="/projects">Explore projects</Link>
-        </div>
-        <div className="work-grid">
-          {projects.map((project) => (
-            <article className="work-tile" key={project.id}>
-              <ProjectPreview theme={project.id} />
-              <div className="work-caption">
-                <p className="text-sm text-accent">{project.category}</p>
-                <h3 className="card-title">{project.title}</h3>
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -80,9 +57,19 @@ export default function Home() {
             <p className="eyebrow">Contact</p>
             <h2 id="contact" className="section-title">Let’s work together</h2>
           </div>
-          <a href="mailto:lopezjoemari1@gmail.com" className="button button-primary">
+          <a href={contactHref} className="button button-primary">
             <FiMail aria-hidden="true" /> Send an email
           </a>
+        </div>
+      </section>
+
+      <section className="site-container pb-12 sm:pb-16" aria-labelledby="home-certifications">
+        <div className="site-panel flex flex-wrap items-center justify-between gap-5">
+          <div className="flex items-center gap-4">
+            <span className="expertise-icon shrink-0"><FiAward aria-hidden="true" /></span>
+            <h2 id="home-certifications" className="section-title">Certifications</h2>
+          </div>
+          <Link to="/certifications" className="button button-secondary">View certifications</Link>
         </div>
       </section>
 

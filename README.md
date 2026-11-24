@@ -3,7 +3,7 @@
 <hr>
 
 <p>
-  This website holds my profile, projects, and career experiences.
+  This website holds my profile, professional experience, and certifications.
 </p>
 
 <hr>

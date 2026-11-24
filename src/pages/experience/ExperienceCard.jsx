@@ -1,6 +1,4 @@
-import { FiMapPin } from 'react-icons/fi';
-import { BsBriefcase } from 'react-icons/bs';
-import ShowcaseCard from '../../components/ShowcaseCard';
+import { FiBriefcase, FiMapPin } from 'react-icons/fi';
 
 export default function ExperienceCard({
   logo,
@@ -13,8 +11,8 @@ export default function ExperienceCard({
   responsibilities,
 }) {
   return (
-    <ShowcaseCard>
-      <div className="grid items-center gap-7 lg:grid-cols-2 lg:gap-12">
+    <article className="experience-card flex min-h-full items-center">
+      <div className="site-container grid items-center gap-7 lg:grid-cols-2 lg:gap-12">
         <div>
           <div className="mb-5 flex h-20 w-24 items-center justify-center rounded-lg bg-white p-2 sm:h-24 sm:w-28">
             <img
@@ -29,7 +27,7 @@ export default function ExperienceCard({
           <h2 className="page-title">{companyName}</h2>
           <p className="mt-2 text-sm font-semibold text-accent">{duration}</p>
           <p className="mt-4 flex items-center gap-2">
-            <BsBriefcase aria-hidden="true" className="shrink-0" />
+            <FiBriefcase aria-hidden="true" className="shrink-0" />
             <span>{position} · {type}</span>
           </p>
           <p className="mt-1 flex items-center gap-2">
@@ -47,6 +45,6 @@ export default function ExperienceCard({
           </ul>
         </div>
       </div>
-    </ShowcaseCard>
+    </article>
   );
 }
